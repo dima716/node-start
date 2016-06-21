@@ -1,0 +1,20 @@
+{
+  "name": "counter716",
+  "version": "1.0.0",
+  "description": "Very simple counter",
+  "main": "lib/counter.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/dima716/counter716"
+  },
+  "scripts": {
+    "test": "jasmine",
+    "lint": "jshint lib spec"
+  },
+  "author": "Anikeychik Dmitry",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "jshint": "^2.9.2"
+  }
+}
