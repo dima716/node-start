@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.btn {
+  transition: all .25s ease;
+}
+
+.btn_is-loading {
+  background: #5cb85c url(../images/bars.svg) no-repeat center center;
+  background-size: contain;
+}
+
+.btn_is-loading .btn__text {
+  opacity: 0;
+}

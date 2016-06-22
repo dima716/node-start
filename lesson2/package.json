@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=development DEBUG=scrapper:* node ./bin/www",
+    "start": "NODE_ENV=development DEBUG=scrapper:* nodemon ./bin/www",
     "test": "NODE_ENV=test && mocha -w app.js tests/*.js",
     "lint": "eslint . --fix"
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "eslint": "^2.13.1",
     "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
     "supertest": "^1.2.0"
   }
 }

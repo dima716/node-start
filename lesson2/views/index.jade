@@ -10,10 +10,11 @@ block content
         form
           div.form-group
             label(for="web-site") Web site
-            input(type="text" class="form-control" id="web-site" placeholder="Web site you want to scrap" required)
+            input(type="text" class="form-control" name="website" id="web-site" placeholder="Web site you want to scrap" required)
           div.form-group
             label(for="css-selector") Css selector
-            input(type="text" class="form-control" id="css-selector" placeholder="Css selector for dom elements you want find" required)
+            input(type="text" class="form-control" name="selector" id="css-selector" placeholder="Css selector for dom elements you want find" required)
 
-          button(type="submit" class="btn btn-lg btn-success" href="#" role="button") Scrap it!
+          button(type="submit" class="btn btn-lg btn-success" href="#" role="button")
+            span(class="btn__text") Scrap it!
       </div>
