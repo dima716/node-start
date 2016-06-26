@@ -34,6 +34,19 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
+
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+console.log('env', app.get('env') === 'development');
+
+app.use(function clientErrorHandler(err, req, res, next) {
+  if (req.xhr) {
+    res.status(err.status || 500).send(err.message || 'Something failed!');
+  } else {
+    next(err);
+  }
+});
+
+
 if (app.get('env') === 'development') {
   app.use(function(err, req, res) {
     res.status(err.status || 500);

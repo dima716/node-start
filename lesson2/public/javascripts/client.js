@@ -2,23 +2,26 @@ $(function() {
   $('form').on('submit', function(event) {
     event.preventDefault();
 
-    var form = $(this);
-    var formData = form.serialize();
-    var submitButton = form.find('button');
+    const form = $(this);
+    const formData = form.serialize();
+    const submitButton = form.find('.form__btn_type_submit');
+    const downloadButton = form.find('.form__btn_type_download');
+
+    downloadButton.remove();
 
     submitButton.addClass('btn_is-loading');
 
     $.ajax({
       url: '/scrap',
       type: 'POST',
-      data: formData,
+      data: formData
     })
     .done(function(response) {
-      $(`<div>Server response: ${JSON.stringify(response)}</div>`).appendTo(form);
-      console.log(response);
+      const donwloadButton = `<a href="${response.filePath}" class="btn btn-lg btn-success form__btn form__btn_type_download">Download</a>`;
+      $(donwloadButton).appendTo(form);
     })
     .fail(function(error) {
-      console.log(error);
+      toastr.error(`${error.responseText}`, 'Error!');
     })
     .always(function() {
       submitButton.removeClass('btn_is-loading');

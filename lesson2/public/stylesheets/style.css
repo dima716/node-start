@@ -11,6 +11,10 @@ a {
   transition: all .25s ease;
 }
 
+.form__btn {
+  margin-right: 5px;
+}
+
 .btn_is-loading {
   background: #5cb85c url(../images/bars.svg) no-repeat center center;
   background-size: contain;

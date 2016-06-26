@@ -7,7 +7,7 @@ block content
       p.lead
         | Scarpper allows you to find contents of selected dom elements
         | of a website
-        form
+        form.form
           div.form-group
             label(for="web-site") Web site
             input(type="text" class="form-control" name="website" id="web-site" placeholder="Web site you want to scrap" required)
@@ -15,6 +15,6 @@ block content
             label(for="css-selector") Css selector
             input(type="text" class="form-control" name="selector" id="css-selector" placeholder="Css selector for dom elements you want find" required)
 
-          button(type="submit" class="btn btn-lg btn-success" href="#" role="button")
+          button(type="submit" class="btn btn-lg btn-success form__btn form__btn_type_submit" href="#" role="button")
             span(class="btn__text") Scrap it!
       </div>
