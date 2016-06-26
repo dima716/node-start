@@ -1,6 +1,6 @@
 const parse = require('url-parse');
 
-const deleteDublicates = (arr) => {
+const deleteDuplicates = (arr) => {
   const result = [];
 
   arr.forEach( (element, index) => {
@@ -12,31 +12,24 @@ const deleteDublicates = (arr) => {
   return result;
 };
 
-const getElementsContent = ($, elements) => {
-  var contents = [];
+const getElementContent = (element) => {
+  const elementContent = element.text();
 
-  contents = elements.map( (index, element) => {
-    const elementContent = $(element).text();
+  if ( elementContent.length !== 0) {
+    return elementContent;
+  }
 
-    if ( elementContent.length !== 0) {
-      return elementContent;
-    }
-  }).get();
-
-  return contents;
+  return '';
 };
 
-const isLinkValid = (linkHref, baseUrl) => {
+const isLinkValid = (linkHref, linkHostName, websiteHostName) => {
   if (linkHref) {
-    if (linkHref.startsWith('#') || linkHref.startsWith('tel') || linkHref.startsWith('email')) {
+    if (linkHref.startsWith('#') || linkHref.startsWith('tel') || linkHref.startsWith('mailto')) {
       return false;
     }
 
-    const linkObject = parse(linkHref, baseUrl);
-    const reqUrlObject = parse(baseUrl);
-
-    // check if link has the same domain as web-site url
-    return linkObject.hostname && linkObject.hostname === reqUrlObject.hostname;
+    // check if link has the same domain as website url
+    return linkHostName == websiteHostName;
   }
 };
 
@@ -50,8 +43,8 @@ const normalizeHref = (href) => {
 
 
 module.exports = {
-  deleteDublicates: deleteDublicates,
-  getElementsContent: getElementsContent,
+  deleteDuplicates: deleteDuplicates,
+  getElementContent: getElementContent,
   isLinkValid: isLinkValid,
   normalizeHref: normalizeHref
 };

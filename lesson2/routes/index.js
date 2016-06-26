@@ -43,7 +43,9 @@ var scrapFactory = function scrapFactory(selector) {
           }
 
           // getting contents of found elements
-          const content = utils.getElementsContent($, elements);
+          contents = elements.map( (index, element) => {
+            return utils.getElementContent( $(element) );
+          }).get();
 
           // parse entered website url
           const reqUrlObject = parse(website);
@@ -56,9 +58,10 @@ var scrapFactory = function scrapFactory(selector) {
             .filter( (index, element) => {
               // filter links (get rid of href="tel+123", href="email", href="#foo", etc.)
               const linkHref = $(element).attr('href');
+              const websiteObject = parse(website);
+              const linkObject = parse(linkHref, website);
 
-              if ( utils.isLinkValid(linkHref, website) ) {
-
+              if ( utils.isLinkValid(linkHref, linkObject.hostName, websiteObject.hostname) ) {
                 return !store[linkHref]; // ensure that link href is not in our store already
               }
             })
@@ -71,7 +74,7 @@ var scrapFactory = function scrapFactory(selector) {
             .get(); // get array of hrefs, e.g. ['yandex.ru', 'yandex.ru/weather', ...]
 
           // get rid of duplicates
-          const filteredLinks = utils.deleteDublicates(links); // duplicates are two or more links to the same destination
+          const filteredLinks = utils.deleteDuplicates(links); // duplicates are two or more links to the same destination
 
           // repeat previous steps for every link in the array
           if (filteredLinks.length && depth > 0) {

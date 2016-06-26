@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development DEBUG=scrapper:* nodemon ./bin/www",
-    "test": "NODE_ENV=test && mocha -w app.js tests/*.js",
+    "test": "NODE_ENV=test && node jasmine-runner.js",
     "lint": "eslint . --fix"
   },
   "dependencies": {
@@ -22,7 +22,10 @@
   },
   "devDependencies": {
     "eslint": "^2.13.1",
+    "jasmine": "^2.4.1",
+    "jasmine-spec-reporter": "^2.5.0",
     "mocha": "^2.5.3",
+    "nock": "^8.0.0",
     "nodemon": "^1.9.2",
     "supertest": "^1.2.0"
   }
