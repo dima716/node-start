@@ -1,4 +1,4 @@
 node_modules/
 *.log
 .DS_Store
-data.json
+lesson2/data.json

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "export NODE_ENV=development DEBUG=scrapper:* nodemon ./bin/www",
+    "start": "export NODE_ENV=development && export DEBUG=scrapper:* && nodemon ./bin/www",
     "test": "export NODE_ENV=test && node jasmine-runner.js",
     "lint": "eslint . --fix"
   },

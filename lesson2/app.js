@@ -5,7 +5,9 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const routes = require('./routes/index');
+const indexRoutes = require('./routes/index');
+const scrapRoutes = require('./routes/scrap');
+const dataRoutes = require('./routes/data');
 
 const app = express();
 
@@ -21,7 +23,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', indexRoutes);
+app.use('/scrap', scrapRoutes);
+app.use('/data', dataRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,13 +35,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
-// development error handler
-// will print stacktrace
-
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('env', app.get('env') === 'development');
-
 app.use(function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
     res.status(err.status || 500).send(err.message || 'Something failed!');
@@ -57,8 +54,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error', {
