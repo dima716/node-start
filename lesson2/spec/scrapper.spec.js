@@ -29,18 +29,6 @@ describe('Scrapper', () => {
     });
   });
 
-
-  it('should validate existense of elements with entered selector', (done) => {
-    const scrap = scrapper('foo');
-
-    scrap(config.website, config.depth)
-    .catch(error => {
-      expect(error.message).toBe('Elements with this selector not found');
-      expect(error.statusCode).toBe(500);
-      done();
-    });
-  });
-
   it('should validate existense of website', (done) => {
     const scrap = scrapper(config.selector);
 

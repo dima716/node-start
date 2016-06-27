@@ -23,17 +23,6 @@ module.exports = function scrapperFactory(selector) {
 
           const elements = $(selector);
 
-          // checking if there are elements with the selector
-          // when we visit first page of the website
-          if (elements.length == 0) {
-            if (depth == config.depth) {
-              return reject({
-                statusCode: 500,
-                message: 'Elements with this selector not found'
-              });
-            }
-          }
-
           // getting content of found elements
           content = elements.map( (index, element) => {
             return utils.getElementContent( $(element) );
