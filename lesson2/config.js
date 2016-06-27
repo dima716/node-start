@@ -1,12 +1,10 @@
 var config;
 
-if (process.env.NODE_ENV === 'development') {
-  config = {
-    depth: process.env.DEPTH || 1,
-    outputJsonSpaces: 2,
-    jsonFileName: 'data.json'
-  };
-}
+config = {
+  depth: process.env.DEPTH || 1,
+  outputJsonSpaces: 2,
+  jsonFileName: 'data.json'
+};
 
 if (process.env.NODE_ENV === 'test') {
   config = {

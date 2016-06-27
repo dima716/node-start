@@ -1,12 +1,19 @@
+var util = require('util');
+
 var checkEmptyField = (field) => {
-  return !!field.trim();
+  return  !util.isUndefined(field) && !!field.trim();
 };
 
-var checkFieldType = (field) => {
-  return isNaN(Number(field));
+var checkFieldTypeString = (field) => {
+  return !checkFieldTypeNumber(field);
 };
+
+var checkFieldTypeNumber = (field) => {
+  return !isNaN(Number(field))
+}
 
 module.exports = {
   checkEmptyField: checkEmptyField,
-  checkFieldType: checkFieldType
+  checkFieldTypeString: checkFieldTypeString,
+  checkFieldTypeNumber: checkFieldTypeNumber
 };
