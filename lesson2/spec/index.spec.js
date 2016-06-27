@@ -1,7 +1,11 @@
-var app = require('../app.js');
-var request = require('supertest');
+/* npm modules */
+const request = require('supertest');
+/* npm modules */
 
-var finishTest = require('./helpers/finish-test');
+/* app modules */
+const app = require('../app.js');
+const finishTest = require('./helpers/finish-test');
+/* app modules */
 
 describe('Index route', () => {
   it('should return a 200 status code', (done) => {

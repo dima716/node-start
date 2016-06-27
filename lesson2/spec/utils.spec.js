@@ -1,4 +1,6 @@
-var utils = require('../lib/utils');
+/* app modules */
+const utils = require('../lib/utils');
+/* app modules */
 
 describe('Utils', () => {
   describe('deleteDuplicates', () => {

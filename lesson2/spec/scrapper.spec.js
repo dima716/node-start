@@ -1,11 +1,16 @@
+/* npm modules */
 const scrapper = require('../lib/scrapper');
 const config = require('../config');
 const fixtureData = require('./fixtures/data.json');
+/* npm modules */
+
+/* app modules */
 const jasmine = require('jasmine');
 const nock = require('nock');
+/* app modules */
 
 describe('Scrapper', () => {
-  afterEach(function () {
+  afterEach(() => {
     nock.cleanAll();
   });
 

@@ -1,9 +1,14 @@
-var app = require('../app.js');
-var request = require('supertest');
-var nock = require('nock');
+/* npm modules */
+const request = require('supertest');
+const nock = require('nock');
+/* npm modules */
 
-var config = require('../config');
-var finishTest = require('./helpers/finish-test');
+/* app modules */
+const app = require('../app.js');
+const config = require('../config');
+const finishTest = require('./helpers/finish-test');
+/* app modules */
+
 
 describe('Scrap route', () => {
   afterEach(() => {
