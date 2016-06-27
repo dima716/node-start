@@ -19,10 +19,10 @@ router.post('/', function(req, res, next) {
   const err = new Error();
   err.statusCode = 400;
 
-  if ( !validation.checkEmptyField(website) ) {
-    err.message = 'Website field is empty';
-  } else if ( !validation.checkFieldTypeString(website) ) {
-    err.message = 'Website field should be a string';
+  if ( validation.checkEmptyField(depth) ) {
+    if ( !validation.checkFieldTypeNumber(depth) ) {
+      err.message = 'Crawl depth field should be a string';
+    }
   }
 
   if ( !validation.checkEmptyField(selector) ) {
@@ -31,10 +31,10 @@ router.post('/', function(req, res, next) {
     err.message = 'Selector field should be a string';
   }
 
-  if ( validation.checkEmptyField(depth) ) {
-    if ( !validation.checkFieldTypeNumber(depth) ) {
-      err.message = 'Crawl depth field should be a string';
-    }
+  if ( !validation.checkEmptyField(website) ) {
+    err.message = 'Website field is empty';
+  } else if ( !validation.checkFieldTypeString(website) ) {
+    err.message = 'Website field should be a number';
   }
 
   if (err.message) {
