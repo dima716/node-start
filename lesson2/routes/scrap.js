@@ -1,33 +1,57 @@
-// it('should validate empty website field', (done) => {
-//   const scrap = scrapper(specConfig.selector);
+/* npm modules */
+const express = require('express');
+const router = express.Router();
+const jsonfile = require('jsonfile');
+/* npm modules */
 
-//   scrap('', specConfig.depth)
-//   .catch(error => {
-//     expect(error.message).toBe('Website field is empty');
-//     expect(error.code).toBe(400);
-//     done();
-//   });
-// });
+/* app modules */
+const scrapper = require('../lib/scrapper');
+const config = require('../config');
+const validation = require('../lib/validation');
+/* app modules */
 
-// it('should validate empty selector field', (done) => {
-//   const scrap = scrapper('');
+router.post('/', function(req, res, next) {
+  const website = req.body.website;
+  const selector = req.body.selector;
 
-//   scrap(specConfig.website, specConfig.depth)
-//   .catch(error => {
-//     expect(error.message).toBe('Selector field is emptyy');
-//     expect(error.code).toBe(400);
-//     done();
-//   });
-// });
+  /* Error handling for user input */
+  const err = new Error();
+  err.statusCode = 400;
 
-// it('should validate type of website field', () => {
+  if ( !validation.checkEmptyField(website) ) {
+    err.message = 'Website field is empty';
+  } else if ( !validation.checkFieldType(website) ) {
+    err.message = 'Website field should be a string';
+  }
 
-// });
+  if ( !validation.checkEmptyField(selector) ) {
+    err.message = 'Selector field is empty';
+  } else if ( !validation.checkFieldType(selector) ) {
+    err.message = 'Selector field should be a string';
+  }
 
-// it('should validate type of selector field', () => {
+  if (err.message) {
+    return next(err);
+  }
+  /* Error handling for user input */
 
-// });
+  const scrap = scrapper(selector);
 
-// it('should validate existense of website', () => {
+  scrap(website, config.depth)
+  .then(function(store) {
+    jsonfile.writeFile(config.jsonFileName, store, {spaces: config.outputJsonSpaces}, function (err) {
+      if (err) {
+        next(err);
+      }
 
-// });
+      res.json({
+        filePath: '/data'
+      });
+    });
+  })
+  .catch(error => {
+    res.status(error.statusCode || 500).send(error.message);
+  });
+});
+
+module.exports = router;
