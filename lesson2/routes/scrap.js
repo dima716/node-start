@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
 
   if ( validation.checkEmptyField(depth) ) {
     if ( !validation.checkFieldTypeNumber(depth) ) {
-      err.message = 'Crawl depth field should be a string';
+      err.message = 'Crawl depth field should be a number';
     }
   }
 
@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
   if ( !validation.checkEmptyField(website) ) {
     err.message = 'Website field is empty';
   } else if ( !validation.checkFieldTypeString(website) ) {
-    err.message = 'Website field should be a number';
+    err.message = 'Website field should be a string';
   }
 
   if (err.message) {
