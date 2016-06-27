@@ -30,9 +30,9 @@ describe('Utils', () => {
       expect(utils.getElementContent(element)).toBe('text');
     });
 
-    it('should return empty string if element has no content', () => {
+    it('should return undefined if element has no content', () => {
       spyOn(element, 'text').and.returnValue('');
-      expect(utils.getElementContent(element)).toBe('');
+      expect(utils.getElementContent(element)).toBeUndefined();
     });
   });
 

@@ -18,8 +18,6 @@ const getElementContent = (element) => {
   if ( elementContent.length !== 0) {
     return elementContent;
   }
-
-  return '';
 };
 
 const isLinkValid = (linkHref, linkHostName, websiteHostName) => {
