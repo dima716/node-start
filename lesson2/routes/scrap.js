@@ -59,7 +59,7 @@ router.post('/', function(req, res, next) {
   })
   .catch(error => {
     debug('Error', error);
-    res.status(error.statusCode || 500).send(error.message);
+    next(error);
   });
 });
 

@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 app.use(function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
     debug('Client error', err);
-    res.status(err.status || 500).send(err.message || 'Something failed!');
+    res.status(err.status || 500).send(err || 'Something failed!');
   } else {
     next(err);
   }

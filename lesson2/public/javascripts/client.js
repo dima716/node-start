@@ -22,8 +22,8 @@ $(function() {
       $(donwloadButton).appendTo(form);
     })
     .fail(function(error) {
-      if (error.getResponseHeader('Content-Type').includes('json')) {
-        toastr.error(error.responseText, 'Error!');
+      if (error.responseJSON && error.responseJSON.message) {
+        toastr.error(error.responseJSON.message, 'Error!');
       } else {
         toastr.error(error.statusText, 'Error!');
       }
