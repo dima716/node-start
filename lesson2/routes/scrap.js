@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const jsonfile = require('jsonfile');
+const debug = require('debug')('server:scrap route');
 /* npm modules */
 
 /* app modules */
@@ -57,6 +58,7 @@ router.post('/', function(req, res, next) {
     });
   })
   .catch(error => {
+    debug('Error', error);
     res.status(error.statusCode || 500).send(error.message);
   });
 });

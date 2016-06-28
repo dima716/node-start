@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const debug = require('debug')('server:app');
 
 const indexRoutes = require('./routes/index');
 const scrapRoutes = require('./routes/scrap');
@@ -37,6 +38,7 @@ app.use(function(req, res, next) {
 // error handlers
 app.use(function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
+    debug('Client error', err);
     res.status(err.status || 500).send(err.message || 'Something failed!');
   } else {
     next(err);
@@ -46,6 +48,8 @@ app.use(function clientErrorHandler(err, req, res, next) {
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res) {
+    debug('Error', err);
+
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -55,6 +59,8 @@ if (app.get('env') === 'development') {
 }
 
 app.use(function(err, req, res) {
+  debug('Error', err);
+
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

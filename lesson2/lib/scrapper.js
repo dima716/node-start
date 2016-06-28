@@ -2,6 +2,7 @@
 const parse = require('url-parse');
 const cheerio = require('cheerio');
 const got = require('got');
+const debug = require('debug')('server:scrapper');
 /* npm modules */
 
 /* app modules */
@@ -87,6 +88,7 @@ module.exports = function scrapperFactory(selector) {
 
         throw error;
       } else {
+        debug('Error', error);
         return error;
       }
     });

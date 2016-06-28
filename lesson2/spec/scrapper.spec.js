@@ -2,6 +2,7 @@
 const scrapper = require('../lib/scrapper');
 const config = require('../config');
 const fixtureData = require('./fixtures/data.json');
+const debug = require('debug')('server:scrapper.spec');
 /* npm modules */
 
 /* app modules */
@@ -24,8 +25,7 @@ describe('Scrapper', () => {
       done();
     })
     .catch(error => {
-      console.log('Error in scrap spec:');
-      console.log(error);
+      debug('Error', error);
     });
   });
 
