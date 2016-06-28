@@ -10,6 +10,7 @@ $(function() {
     downloadButton.remove();
 
     submitButton.addClass('btn_is-loading');
+    submitButton.attr('disabled', true);
 
     $.ajax({
       url: '/scrap',
@@ -21,11 +22,15 @@ $(function() {
       $(donwloadButton).appendTo(form);
     })
     .fail(function(error) {
-      toastr.error(`${error.responseText}`, 'Error!');
+      if (error.getResponseHeader('Content-Type').includes('json')) {
+        toastr.error(error.responseText, 'Error!');
+      } else {
+        toastr.error(error.statusText, 'Error!');
+      }
     })
     .always(function() {
       submitButton.removeClass('btn_is-loading');
+      submitButton.attr('disabled', false);
     });
-
   });
 });
