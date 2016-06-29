@@ -9,7 +9,7 @@ config = {
 if (process.env.NODE_ENV === 'test') {
   config = {
     depth: 1,
-    website: 'https://frontendmasters.com/',
+    website: 'https://frontendmasters.com',
     selector: 'a',
     outputJsonSpaces: 2,
     jsonFileName: 'data.json'

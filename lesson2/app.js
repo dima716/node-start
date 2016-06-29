@@ -5,6 +5,19 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')('server:app');
+const nock = require('nock');
+
+const fs = require('fs');
+
+nock.recorder.rec({
+  logging: function(content) {
+    fs.appendFile('record.txt', content);
+  }
+});
+
+// nock.recorder.rec({
+//   dont_print: true
+// });
 
 const indexRoutes = require('./routes/index');
 const scrapRoutes = require('./routes/scrap');

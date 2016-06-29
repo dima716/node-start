@@ -1,5 +1,5 @@
 {
-  "https://frontendmasters.com/": [
+  "https://frontendmasters.com": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -32,28 +32,7 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/login/": [
-    "  Frontend Masters Logo                      ",
-    "Overview",
-    "Testimonials",
-    "Courses",
-    "Pricing",
-    "Login",
-    "Enroll",
-    "Lost your password?",
-    "Terms of Service",
-    "Privacy Policy",
-    "support@frontendmasters.com",
-    "+1 (612) 568-7620",
-    "Blog",
-    "Overview",
-    "Testimonials",
-    "Courses",
-    "Pricing",
-    "Login",
-    "Enroll"
-  ],
-  "https://frontendmasters.com/courses/javascript-the-good-parts/douglas-crockfords-function-challenges/": [
+  "https://frontendmasters.com/#testimonials": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -68,11 +47,12 @@
     "Pricing",
     "Login",
     "Enroll",
-    "JavaScript the Good Parts",
-    "full course",
-    "See what's inside!",
+    "View Courses",
+    "Watch Sample",
+    "Read more customer reviews",
     "Get Unlimited Access Now",
-    "full course",
+    "support@frontendmasters.com",
+    "email us",
     "Terms of Service",
     "Privacy Policy",
     "support@frontendmasters.com",
@@ -85,7 +65,30 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/courses/": [
+  "https://frontendmasters.com/enroll": [
+    "  Frontend Masters Logo                      ",
+    "Overview",
+    "Testimonials",
+    "Courses",
+    "Pricing",
+    "Login",
+    "Enroll",
+    "Log in",
+    "sales@frontendmasters.com",
+    "Terms of Service",
+    "Privacy Policy",
+    "support@frontendmasters.com",
+    "+1 (612) 568-7620",
+    "Blog",
+    "Overview",
+    "Testimonials",
+    "Courses",
+    "Pricing",
+    "Login",
+    "Enroll"
+  ],
+  "https://frontendmasters.com/assets/PrivacyPolicy.pdf": [],
+  "https://frontendmasters.com/courses": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -258,7 +261,8 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/enroll/": [
+  "https://frontendmasters.com/assets/MasterServicesAgreement.pdf": [],
+  "https://frontendmasters.com/login": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -266,8 +270,7 @@
     "Pricing",
     "Login",
     "Enroll",
-    "Log in",
-    "sales@frontendmasters.com",
+    "Lost your password?",
     "Terms of Service",
     "Privacy Policy",
     "support@frontendmasters.com",
@@ -280,7 +283,7 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/#testimonials": [
+  "https://frontendmasters.com/courses/javascript-the-good-parts/douglas-crockfords-function-challenges": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -295,12 +298,11 @@
     "Pricing",
     "Login",
     "Enroll",
-    "View Courses",
-    "Watch Sample",
-    "Read more customer reviews",
+    "JavaScript the Good Parts",
+    "full course",
+    "See what's inside!",
     "Get Unlimited Access Now",
-    "support@frontendmasters.com",
-    "email us",
+    "full course",
     "Terms of Service",
     "Privacy Policy",
     "support@frontendmasters.com",
@@ -313,7 +315,7 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/customers-love-frontend-masters/": [
+  "https://frontendmasters.com/customers-love-frontend-masters": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -350,7 +352,7 @@
     "Login",
     "Enroll"
   ],
-  "https://frontendmasters.com/blog/": [
+  "https://frontendmasters.com/blog": [
     "  Frontend Masters Logo                      ",
     "Overview",
     "Testimonials",
@@ -434,7 +436,5 @@
     "Pricing",
     "Login",
     "Enroll"
-  ],
-  "https://frontendmasters.com/assets/PrivacyPolicy.pdf": [],
-  "https://frontendmasters.com/assets/MasterServicesAgreement.pdf": []
+  ]
 }

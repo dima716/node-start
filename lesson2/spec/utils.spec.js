@@ -47,12 +47,20 @@ describe('Utils', () => {
       expect(utils.isLinkValid('tel:+000000000', 'test.com', 'test.com')).toBe(false);
     });
 
-    it('should filter anchor link', () => {
-      expect(utils.isLinkValid('#test', 'test.com', 'test.com')).toBe(false);
+    it('should filter geo link', () => {
+      expect(utils.isLinkValid('geo:37.786971,-122.399677', 'test.com', 'test.com')).toBe(false);
     });
 
-    it('should filter link with different domain', () => {
-      expect(utils.isLinkValid('#test', 'test2.com', 'test.com')).toBe(false);
+    it('should filter javascript link', () => {
+      expect(utils.isLinkValid('javascript:void(0)', 'test.com', 'test.com')).toBe(false);
+    });
+
+    it('should filter sms link', () => {
+      expect(utils.isLinkValid('sms:12345678', 'test.com', 'test.com')).toBe(false);
+    });
+
+    it('should filter anchor link', () => {
+      expect(utils.isLinkValid('#test', 'test.com', 'test.com')).toBe(false);
     });
 
     it('should not filter link if it is a link to the page and has the same domain as website url', () => {
@@ -70,5 +78,3 @@ describe('Utils', () => {
     });
   });
 });
-
-

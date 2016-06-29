@@ -2,7 +2,6 @@
 const parse = require('url-parse');
 const cheerio = require('cheerio');
 const got = require('got');
-const debug = require('debug')('server:scrapper');
 /* npm modules */
 
 /* app modules */
@@ -38,19 +37,28 @@ module.exports = function scrapperFactory(selector) {
           // find all links
           const links = $('a')
           .filter( (index, element) => {
-              // filter links (get rid of href="tel+123", href="email", href="#foo", etc.)
               const linkHref = $(element).attr('href');
+
               const websiteObject = parse(website);
               const linkObject = parse(linkHref, website);
 
-              if ( utils.isLinkValid(linkHref, linkObject.hostname, websiteObject.hostname) ) {
-                return !store[linkHref]; // ensure that link href is not in our store already
+              linkObject.set('protocol', 'http');
+              linkObject.set('hash', '');
+
+              websiteObject.set('protocol', 'http');
+              websiteObject.set('hash', '');
+
+              const hasSimilarHostnames = linkObject.hostname == websiteObject.hostname;
+
+              if (utils.isLinkValid(linkHref) && hasSimilarHostnames) {
+                 return !store[linkHref]; // ensure that link href is not in our store already
+              } else {
+                return false;
               }
             })
           .map( (index, element) => {
             const linkHref = $(element).attr('href');
             const linkObject = parse(linkHref, website);
-
             return utils.normalizeHref(linkObject.href);
           })
             .get(); // get array of hrefs, e.g. ['yandex.ru', 'yandex.ru/weather', ...]
@@ -88,7 +96,6 @@ module.exports = function scrapperFactory(selector) {
 
         throw error;
       } else {
-        debug('Error', error);
         return error;
       }
     });

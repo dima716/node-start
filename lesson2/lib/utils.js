@@ -20,18 +20,30 @@ const getElementContent = (element) => {
   }
 };
 
-const isLinkValid = (linkHref, linkHostName, websiteHostName) => {
-  if (linkHref) {
-    if (linkHref.startsWith('#') || linkHref.startsWith('tel') || linkHref.startsWith('mailto')) {
-      return false;
+const stripTrailingSlash = (str) => {
+    if (str.slice(-1) == '/') {
+        return str.slice(0, str.length - 1);
     }
+    return str;
+};
 
-    // check if link has the same domain as website url
-    return linkHostName == websiteHostName;
+const isLinkValid = (linkHref) => {
+  if (linkHref) {
+    const invalidSchemes = ['data','geo','javascript','mailto','sms','tel', '#'];
+
+    const isLinkValid = invalidSchemes.every((scheme) => {
+      return !linkHref.startsWith(scheme);
+    });
+
+    return isLinkValid;
+  } else {
+    return false;
   }
 };
 
 const normalizeHref = (href) => {
+  href = stripTrailingSlash(href);
+
   if ( href.startsWith('//') ) {
     return href.replace('//', '');
   } else {
@@ -41,6 +53,7 @@ const normalizeHref = (href) => {
 
 
 module.exports = {
+  stripTrailingSlash: stripTrailingSlash,
   deleteDuplicates: deleteDuplicates,
   getElementContent: getElementContent,
   isLinkValid: isLinkValid,

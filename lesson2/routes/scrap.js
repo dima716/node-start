@@ -9,10 +9,11 @@ const debug = require('debug')('server:scrap route');
 const scrapper = require('../lib/scrapper');
 const config = require('../config');
 const validation = require('../lib/validation');
+const utils = require('../lib/utils');
 /* app modules */
 
 router.post('/', function(req, res, next) {
-  const website = req.body.website;
+  const website = utils.stripTrailingSlash(req.body.website);
   const selector = req.body.selector;
   const depth = req.body.depth;
 
