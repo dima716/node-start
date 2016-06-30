@@ -5,7 +5,12 @@
     "es6": true,
     "node": true,
     "browser": true,
-    "mocha": true
+    "jasmine": true,
+    "jquery": true
+  },
+
+  "globals": {
+    "toastr": false
   },
 
   "ecmaFeatures": {
@@ -23,7 +28,7 @@
     "comma-style": [2, "last"],
     "computed-property-spacing": [2, "never"],
     "eol-last": 2,
-    "eqeqeq": 2,
+    "eqeqeq": 0,
     "generator-star-spacing": [2, {"before": true, "after": false}],
     "indent": [2, 2, {"SwitchCase": 1}],
     "linebreak-style": [2, "unix"],
