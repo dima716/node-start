@@ -1,3 +1,5 @@
+'use strict';
+
 /* app modules */
 const utils = require('../lib/utils');
 /* app modules */

@@ -13,7 +13,7 @@ const program = require('commander');
 program
 .description('Scarpper allows you to find contents of selected dom elements of a website')
 .version(pkg.version)
-.usage('scrapper [options] <website> <selector>')
+.usage('[options] <website> <selector> <output file>')
 .arguments('<website>', '<selector>', '<output file>')
 .option('-d, --depth <n>', `depth of search within a website, default is ${config.depth}`)
 .parse(process.argv);
@@ -34,9 +34,9 @@ if (program.args.length < 3) {
 console.log(`\nRunning scrapper for ${'website'.green}=${website} ${'selector'.yellow}=${selector} ${'depth'.blue}=${depth}\n`);
 
 // calling scrapper
-const scrap = scrapper(selector);
+const scrap = scrapper(selector, depth);
 
-scrap(website, depth)
+scrap(website)
 .then(function(store) {
   jsonfile.writeFile(outputFile, store, {spaces: config.outputJsonSpaces}, (err) => {
     if (err) {

@@ -1,3 +1,4 @@
+'use strict';
 let config;
 
 config = {
@@ -17,4 +18,3 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 module.exports = config;
-

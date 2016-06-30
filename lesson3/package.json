@@ -1,9 +1,9 @@
 {
-  "name": "scrapper",
+  "name": "scrapper716",
   "version": "0.0.0",
-  "private": true,
   "main": "cli/scrap-cli.js",
   "scripts": {
+    "start": "echo \"Run scrapper command\" && exit 0",
     "test": "export NODE_ENV=test DEBUG=server:* && node jasmine-runner.js",
     "lint": "eslint . --fix"
   },
