@@ -15,11 +15,12 @@ module.exports = function scrapperFactory(selector, depth) {
 
   return function scrap(website, currentDepth) {
     currentDepth = util.isUndefined(currentDepth) ? depth : currentDepth;
-    currentDepth--;
 
     return got(website)
     .then((response) => {
       return new Promise((resolve, reject) => {
+        currentDepth--;
+
         // getting elements that correspond to the selector
         const $ = cheerio.load(response.body, {
           normalizeWhitespace: true
