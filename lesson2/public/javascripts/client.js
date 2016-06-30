@@ -1,5 +1,5 @@
-$(() => {
-  $('form').on('submit', (event) => {
+$(function() {
+  $('form').on('submit', function (event) {
     event.preventDefault();
 
     const form = $(this);
@@ -11,6 +11,8 @@ $(() => {
 
     submitButton.addClass('btn_is-loading');
     submitButton.attr('disabled', true);
+
+    console.log(formData);
 
     $.ajax({
       url: '/scrap',
