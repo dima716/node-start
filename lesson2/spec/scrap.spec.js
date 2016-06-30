@@ -8,13 +8,9 @@ const app = require('../app.js');
 const config = require('../config');
 const finishTest = require('./helpers/finish-test');
 /* app modules */
-
+nock.cleanAll();
 
 describe('Scrap route', () => {
-  afterEach(() => {
-    nock.cleanAll();
-  });
-
   it('should return a 200 status code', (done) => {
     request(app)
     .post('/scrap')

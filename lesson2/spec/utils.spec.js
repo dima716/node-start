@@ -1,3 +1,5 @@
+'use strict';
+
 /* app modules */
 const utils = require('../lib/utils');
 /* app modules */
@@ -5,19 +7,19 @@ const utils = require('../lib/utils');
 describe('Utils', () => {
   describe('deleteDuplicates', () => {
     it('should delete duplicates of items in a array', () => {
-      const arr = [1,1,2,2,3,3,'test','test'];
-      expect(utils.deleteDuplicates(arr)).toEqual([1,2,3,'test']);
+      const arr = [1, 1, 2, 2, 3, 3, 'test', 'test'];
+      expect(utils.deleteDuplicates(arr)).toEqual([1, 2, 3, 'test']);
     });
 
     it('should leave array unchanged if there are no duplicates', () => {
-      const arr = [1,2,3,'test'];
-      expect(utils.deleteDuplicates(arr)).toEqual([1,2,3,'test']);
+      const arr = [1, 2, 3, 'test'];
+      expect(utils.deleteDuplicates(arr)).toEqual([1, 2, 3, 'test']);
     });
   });
 
   describe('getElementContent', () => {
-    var text = 'text';
-    var element = {
+    let text = 'text';
+    let element = {
       text: () => {}
     };
 

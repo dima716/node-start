@@ -1,4 +1,4 @@
-module.exports = (done) => (err, res) => {
+module.exports = (done) => (err) => {
   if (err) {
     done.fail(err);
   } else {

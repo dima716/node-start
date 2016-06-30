@@ -16,5 +16,5 @@ describe('Validation', () => {
   it('should check number type', () => {
     expect(validation.checkFieldTypeNumber('test')).toBe(false);
     expect(validation.checkFieldTypeNumber(123)).toBe(true);
-  })
+  });
 });

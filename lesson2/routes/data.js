@@ -8,10 +8,10 @@ const jsonfile = require('jsonfile');
 const config = require('../config');
 /* app modules */
 
-router.get('/', function(req, res, next) {
-  jsonfile.readFile(config.jsonFileName, function(err, obj) {
+router.get('/', (req, res, next) => {
+  jsonfile.readFile(config.jsonFileName, (err, obj) => {
     if (err) {
-      next(err);
+      return next(err);
     }
 
     res.json(obj);

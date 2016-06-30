@@ -1,3 +1,5 @@
+'use strict';
+
 /* npm modules */
 const request = require('supertest');
 const nock = require('nock');
@@ -11,8 +13,8 @@ const finishTest = require('./helpers/finish-test');
 /* app modules */
 
 describe('Scrap route', () => {
-  var agent;
-  var createData = (cb) => {
+  let agent;
+  let createData = (cb) => {
     agent
     .post('/scrap')
     .send(`website=${config.website}&selector=${config.selector}`)

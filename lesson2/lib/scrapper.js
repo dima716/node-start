@@ -12,51 +12,51 @@ const utils = require('./utils');
 module.exports = function scrapperFactory(selector) {
   const store = {};
 
-  return function scrap (website, depth) {
+  return function scrap(website, depth) {
     return got(website)
-    .then(response => {
-      return new Promise( (resolve, reject) => {
+    .then((response) => {
+      return new Promise((resolve, reject) => {
           // getting elements that correspond to the selector
-          const $ = cheerio.load(response.body, {
-            normalizeWhitespace: true
-          });
+        const $ = cheerio.load(response.body, {
+          normalizeWhitespace: true
+        });
 
-          const elements = $(selector);
+        const elements = $(selector);
 
           // getting content of found elements
-          content = elements.map( (index, element) => {
-            return utils.getElementContent( $(element) );
-          }).get();
+        const content = elements.map((index, element) => {
+          return utils.getElementContent($(element));
+        }).get();
 
           // parse entered website url
-          const reqUrlObject = parse(website);
+        const reqUrlObject = parse(website);
 
           // save found contents of dom elements in the store using website url as a key
-          store[reqUrlObject.href] = content;
+        store[reqUrlObject.href] = content;
 
           // find all links
-          const links = $('a')
-          .filter( (index, element) => {
-              const linkHref = $(element).attr('href');
+        const links = $('a')
+          .filter((index, element) => {
+            const linkHref = $(element).attr('href');
 
-              const websiteObject = parse(website);
-              const linkObject = parse(linkHref, website);
+            const websiteObject = parse(website);
+            const linkObject = parse(linkHref, website);
 
-              linkObject.set('protocol', 'http');
-              linkObject.set('hash', '');
+            linkObject.set('protocol', 'http');
+            linkObject.set('hash', '');
 
-              websiteObject.set('protocol', 'http');
-              websiteObject.set('hash', '');
+            websiteObject.set('protocol', 'http');
+            websiteObject.set('hash', '');
 
-              const hasSimilarHostnames = linkObject.hostname == websiteObject.hostname;
+            const hasSimilarHostnames = linkObject.hostname == websiteObject.hostname;
 
-              if (utils.isLinkValid(linkHref) && hasSimilarHostnames) {
-                 return !store[linkHref]; // ensure that link href is not in our store already
-              } else {
-                return false;
-              }
-            })
-          .map( (index, element) => {
+            if (utils.isLinkValid(linkHref) && hasSimilarHostnames) {
+              return !store[linkHref]; // ensure that link href is not in our store already
+            } else {
+              return false;
+            }
+          })
+          .map((index, element) => {
             const linkHref = $(element).attr('href');
             const linkObject = parse(linkHref, website);
             return utils.normalizeHref(linkObject.href);
@@ -64,27 +64,27 @@ module.exports = function scrapperFactory(selector) {
             .get(); // get array of hrefs, e.g. ['yandex.ru', 'yandex.ru/weather', ...]
 
           // get rid of duplicates
-          const filteredLinks = utils.deleteDuplicates(links); // duplicates are two or more links to the same destination
+        const filteredLinks = utils.deleteDuplicates(links); // duplicates are two or more links to the same destination
 
           // repeat previous steps for every link in the array
-          if (filteredLinks.length && depth > 0) {
-            const promises = filteredLinks.map(function(link, index) {
-              return scrap(link, depth - 1);
-            });
+        if (filteredLinks.length && depth > 0) {
+          const promises = filteredLinks.map((link) => {
+            return scrap(link, depth - 1);
+          });
 
-            Promise.all(promises)
+          Promise.all(promises)
             .then(() => {
               resolve(store);
             })
-            .catch(error => {
+            .catch((error) => {
               reject(error);
             });
-          } else {
-            resolve(store); // end searhing when depth condition is met or there're no links on the page
-          }
-        });
+        } else {
+          resolve(store); // end searhing when depth condition is met or there're no links on the page
+        }
+      });
     })
-    .catch( error => {
+    .catch((error) => {
       // only show error to the user if it's the first page of the website
       if (depth == config.depth) {
         if (error.code == 'ENOTFOUND') {

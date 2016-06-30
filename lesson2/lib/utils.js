@@ -1,9 +1,7 @@
-const parse = require('url-parse');
-
 const deleteDuplicates = (arr) => {
   const result = [];
 
-  arr.forEach( (element, index) => {
+  arr.forEach((element) => {
     if (result.indexOf(element) === -1) {
       result.push(element);
     }
@@ -15,21 +13,21 @@ const deleteDuplicates = (arr) => {
 const getElementContent = (element) => {
   const elementContent = element.text();
 
-  if ( elementContent.length !== 0) {
+  if (elementContent.length !== 0) {
     return elementContent;
   }
 };
 
 const stripTrailingSlash = (str) => {
-    if (str.slice(-1) == '/') {
-        return str.slice(0, str.length - 1);
-    }
-    return str;
+  if (str.slice(-1) == '/') {
+    return str.slice(0, str.length - 1);
+  }
+  return str;
 };
 
 const isLinkValid = (linkHref) => {
   if (linkHref) {
-    const invalidSchemes = ['data','geo','javascript','mailto','sms','tel', '#'];
+    const invalidSchemes = ['data', 'geo', 'javascript', 'mailto', 'sms', 'tel', '#'];
 
     const isLinkValid = invalidSchemes.every((scheme) => {
       return !linkHref.startsWith(scheme);
@@ -44,7 +42,7 @@ const isLinkValid = (linkHref) => {
 const normalizeHref = (href) => {
   href = stripTrailingSlash(href);
 
-  if ( href.startsWith('//') ) {
+  if (href.startsWith('//')) {
     return href.replace('//', '');
   } else {
     return href;

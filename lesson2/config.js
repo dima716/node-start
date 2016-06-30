@@ -1,4 +1,5 @@
-var config;
+'use strict';
+let config;
 
 config = {
   depth: process.env.DEPTH || 1,
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV === 'test') {
     selector: 'a',
     outputJsonSpaces: 2,
     jsonFileName: 'data.json'
-  }
+  };
 }
 
 module.exports = config;

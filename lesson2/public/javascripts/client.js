@@ -1,5 +1,5 @@
-$(function() {
-  $('form').on('submit', function(event) {
+$(() => {
+  $('form').on('submit', (event) => {
     event.preventDefault();
 
     const form = $(this);
@@ -17,18 +17,18 @@ $(function() {
       type: 'POST',
       data: formData
     })
-    .done(function(response) {
+    .done((response) => {
       const donwloadButton = `<a href="${response.filePath}" class="btn btn-lg btn-success form__btn form__btn_type_download">Download</a>`;
       $(donwloadButton).appendTo(form);
     })
-    .fail(function(error) {
+    .fail((error) => {
       if (error.responseJSON && error.responseJSON.message) {
         toastr.error(error.responseJSON.message, 'Error!');
       } else {
         toastr.error(error.statusText, 'Error!');
       }
     })
-    .always(function() {
+    .always(() => {
       submitButton.removeClass('btn_is-loading');
       submitButton.attr('disabled', false);
     });

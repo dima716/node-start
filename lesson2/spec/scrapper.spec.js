@@ -6,15 +6,12 @@ const debug = require('debug')('server:scrapper.spec');
 /* npm modules */
 
 /* app modules */
-const jasmine = require('jasmine');
 const nock = require('nock');
 /* app modules */
 
-describe('Scrapper', () => {
-  afterEach(() => {
-    nock.cleanAll();
-  });
+nock.cleanAll();
 
+describe('Scrapper', () => {
   // store is a hash which looks like { 'http://test.com': ['text', 'text1'], 'http://test.com/anotherpage': ['text2', 'text3']}
   it('should return store with results', (done) => {
     const scrap = scrapper(config.selector);
@@ -24,7 +21,7 @@ describe('Scrapper', () => {
       expect(store).toEqual(fixtureData);
       done();
     })
-    .catch(error => {
+    .catch((error) => {
       debug('Error', error);
     });
   });
@@ -33,7 +30,7 @@ describe('Scrapper', () => {
     const scrap = scrapper(config.selector);
 
     scrap('foo', config.depth)
-    .catch(error => {
+    .catch((error) => {
       expect(error.message).toBe('Site is not found');
       expect(error.statusCode).toBe(404);
       done();

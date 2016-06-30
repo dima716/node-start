@@ -21,21 +21,21 @@ router.post('/', function(req, res, next) {
   const err = new Error();
   err.statusCode = 400;
 
-  if ( validation.checkEmptyField(depth) ) {
-    if ( !validation.checkFieldTypeNumber(depth) ) {
+  if (validation.checkEmptyField(depth)) {
+    if (!validation.checkFieldTypeNumber(depth)) {
       err.message = 'Crawl depth field should be a number';
     }
   }
 
-  if ( !validation.checkEmptyField(selector) ) {
+  if (!validation.checkEmptyField(selector)) {
     err.message = 'Selector field is empty';
-  } else if ( !validation.checkFieldTypeString(selector) ) {
+  } else if (!validation.checkFieldTypeString(selector)) {
     err.message = 'Selector field should be a string';
   }
 
-  if ( !validation.checkEmptyField(website) ) {
+  if (!validation.checkEmptyField(website)) {
     err.message = 'Website field is empty';
-  } else if ( !validation.checkFieldTypeString(website) ) {
+  } else if (!validation.checkFieldTypeString(website)) {
     err.message = 'Website field should be a string';
   }
 
@@ -47,10 +47,10 @@ router.post('/', function(req, res, next) {
   const scrap = scrapper(selector);
 
   scrap(website, depth || config.depth)
-  .then(function(store) {
-    jsonfile.writeFile(config.jsonFileName, store, {spaces: config.outputJsonSpaces}, function (err) {
+  .then((store) => {
+    jsonfile.writeFile(config.jsonFileName, store, {spaces: config.outputJsonSpaces}, (err) => {
       if (err) {
-        next(err);
+        return next(err);
       }
 
       res.json({
@@ -58,7 +58,7 @@ router.post('/', function(req, res, next) {
       });
     });
   })
-  .catch(error => {
+  .catch((error) => {
     debug('Error', error);
     next(error);
   });
