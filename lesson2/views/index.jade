@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    div.jumbotron
+      h1 My awesome scrapper
+      p.lead
+        | Scarpper allows you to find contents of selected dom elements
+        | of a website
+        form.form
+          div.form-group
+            label(for="web-site") Web site
+            input(type="text" class="form-control" name="website" id="web-site" placeholder="Web site you want to scrap" required)
+          div.form-group
+            label(for="css-selector") Css selector
+            input(type="text" class="form-control" name="selector" id="css-selector" placeholder="Css selector for dom elements you want to find" required)
+          div.form-group
+            label(for="depth") Сrawl depth
+            input(type="text" class="form-control" name="depth" id="depth" placeholder="Depth of search within a website, default value is #{depth}")
+
+          button(type="submit" class="btn btn-lg btn-success form__btn form__btn_type_submit" href="#" role="button")
+            span(class="btn__text") Scrap it!
+      </div>
